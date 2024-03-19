@@ -20,17 +20,15 @@ export default async function handler(req, res) {
             }
         });
 
-        // Verificar si hay datos en la respuesta
         if (!response.data.data || response.data.data.length === 0) {
             return res.status(500).json({ error: 'No se encontraron resultados' });
         }
 
-        // Parsear la información en una cadena de texto
         const parsedText = response.data.data.map(item => {
             return `${item.id} - ${item.attributes.claim}\n- ${item.attributes['fact-check-title']}\n- ${item.attributes['fact-check-summary']}\n`;
         }).join('\n');
 
-        return res.status(200).send(parsedText);
+        return res.status(200).json(parsedText);
     } catch (error) {
         console.error('Error al realizar la solicitud a la API:', error.message);
         return res.status(500).json({ error: 'Error al realizar la solicitud a la API' });
