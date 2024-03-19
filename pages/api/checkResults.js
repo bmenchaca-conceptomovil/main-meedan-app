@@ -20,7 +20,11 @@ export default async function handler(req, res) {
             }
         });
 
-        res.status(200).json(response.data);
+        const parsedText = response.data.data.map(item => {
+            return `${item.id} - ${item.attributes.claim}\n- ${item.attributes['fact-check-title']}\n- ${item.attributes['fact-check-summary']}\n\n`;
+        }).join('');
+
+        res.status(200).send(parsedText);
     } catch (error) {
         console.error('Error al realizar la solicitud a la API:', error.message);
         res.status(500).json({ error: 'Error al realizar la solicitud a la API' });
