@@ -20,6 +20,14 @@ export default async function handler(req, res) {
             }
         });
 
+
+        const audioFormatsRegex = /\.(mp3|wav|flac|m4a)$/i;
+
+        if (!audioFormatsRegex.test(imageUrl)) {
+            const errorResponse = { error: 'La URL no corresponde a una imagen, formato inválido' };
+            return res.status(501).json(errorResponse);
+        }
+
         if (!response.data.data || response.data.data.length === 0) {
             return res.status(500).json({ error: 'No se encontraron resultados' });
         }

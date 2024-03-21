@@ -20,15 +20,15 @@ export default async function handler(req, res) {
             }
         });
 
-        if (!response.data.data || response.data.data.length === 0) {
-            return res.status(500).json({ error: 'No se encontraron resultados' });
-        }
-
         const imageFormatsRegex = /\.(jpeg|jpg|png|gif)$/i;
 
         if (!imageFormatsRegex.test(imageUrl)) {
-            const errorResponse = { error: 'La URL no corresponde a una imagen, formato invalido' };
-            return res.status(500).json(errorResponse);
+            const errorResponse = { error: 'La URL no corresponde a una imagen, formato inválido' };
+            return res.status(501).json(errorResponse);
+        }
+
+        if (!response.data.data || response.data.data.length === 0) {
+            return res.status(500).json({ error: 'No se encontraron resultados' });
         }
 
         const parsedText = response.data.data.map(item => {
