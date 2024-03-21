@@ -24,6 +24,12 @@ export default async function handler(req, res) {
             return res.status(500).json({ error: 'No se encontraron resultados' });
         }
 
+        const imageFormatsRegex = /\.(jpeg|jpg|png|gif)$/i;
+
+        if (!imageFormatsRegex.test(imageUrl)) {
+            return res.status(500).json({ error: 'La URL no corresponde a una imagen, formato invalido' });
+        }
+
         const parsedText = response.data.data.map(item => {
             return `${item.attributes.claim}\n- ${item.attributes['fact-check-summary']}\n- ${item.attributes['published-article-url']}\n`;
         }).join('\n');
