@@ -27,7 +27,8 @@ export default async function handler(req, res) {
         const imageFormatsRegex = /\.(jpeg|jpg|png|gif)$/i;
 
         if (!imageFormatsRegex.test(imageUrl)) {
-            return res.status(500).json({ error: 'La URL no corresponde a una imagen, formato invalido' });
+            const errorResponse = { error: 'La URL no corresponde a una imagen, formato invalido' };
+            return res.status(500).json(errorResponse);
         }
 
         const parsedText = response.data.data.map(item => {
