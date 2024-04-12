@@ -24,7 +24,7 @@ export default async function handler(req, res) {
         const audioFormatsRegex = /\.(mp3|wav|flac|m4a)$/i;
 
         if (!audioFormatsRegex.test(imageUrl)) {
-            const errorResponse = { error: 'La URL no corresponde a una imagen, formato inválido' };
+            const errorResponse = { error: 'La URL no corresponde a un audio, formato inválido' };
             return res.status(501).json(errorResponse);
         }
 
