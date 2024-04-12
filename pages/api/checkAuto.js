@@ -9,15 +9,6 @@ export default async function handler(req, res) {
         const videoFormatsRegex = /\.(mp4|avi|mkv|mov)$/i;
         const textFormatsRegex = /\.(txt|pdf|docx)$/i;
 
-        const paisesAmericas = [
-            "Argentina", "Bolivia", "Brasil", "Canadá", "Chile", "Colombia", "Costa Rica", "Cuba", "Dominica", "Ecuador",
-            "El Salvador", "Estados Unidos", "Granada", "Guatemala", "Guyana", "Haití", "Honduras", "Jamaica", "México",
-            "Nicaragua", "Panamá", "Paraguay", "Perú", "República Dominicana", "San Cristóbal y Nieves", "San Vicente y las Granadinas",
-            "Santa Lucía", "Surinam", "Trinidad y Tobago", "Uruguay", "Venezuela", "Antigua y Barbuda", "Bahamas", "Barbados",
-            "Belice", "Dominica", "Grenada", "Guyana", "Haití", "Jamaica", "Saint Kitts y Nevis", "Santa Lucía", "San Vicente y las Granadinas",
-            "Surinam", "Trinidad y Tobago", "Uruguay", "Venezuela", "México", "Mexico", "Estados Unidos Mexicanos", "Estados Unidos", "EEUU", "EUA"
-        ];
-
         const pais = param.toLowerCase();
 
         if (imageFormatsRegex.test(param)) {
@@ -47,7 +38,15 @@ export default async function handler(req, res) {
 }
 
 function validarPais(pais) {
+    const paisesAmerica = [
+        "Argentina", "Bolivia", "Brasil", "Canadá", "Chile", "Colombia", "Costa Rica", "Cuba", "Dominica", "Ecuador",
+        "El Salvador", "Estados Unidos", "Granada", "Guatemala", "Guyana", "Haití", "Honduras", "Jamaica", "México",
+        "Nicaragua", "Panamá", "Paraguay", "Perú", "República Dominicana", "San Cristóbal y Nieves", "San Vicente y las Granadinas",
+        "Santa Lucía", "Surinam", "Trinidad y Tobago", "Uruguay", "Venezuela", "Antigua y Barbuda", "Bahamas", "Barbados",
+        "Belice", "Dominica", "Grenada", "Guyana", "Haití", "Jamaica", "Saint Kitts y Nevis", "Santa Lucía", "San Vicente y las Granadinas",
+        "Surinam", "Trinidad y Tobago", "Uruguay", "Venezuela", "México", "Mexico", "Estados Unidos Mexicanos", "Estados Unidos", "EEUU", "EUA"
+    ];
     const paisLowerCase = pais.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    return paisesAmericas.includes(paisLowerCase);
+    return paisesAmerica.includes(paisLowerCase);
 }
 
