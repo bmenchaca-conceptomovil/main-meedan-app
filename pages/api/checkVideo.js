@@ -15,7 +15,7 @@ export default async function handler(req, res) {
             },
             headers: {
                 'Accept': 'application/vnd.api+json',
-                'X-Check-Token': '485a95148ad65fb84d9d6281f718953e',
+                'X-Check-Token': process.env.API_KEY,
                 'Content-Type': 'application/json'
             }
         });
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
 
         return res.status(200).json(parsedText);
     } catch (error) {
-        console.error('Error al realizar la solicitud a la API:', error.message);
+        console.error('Error al realizar la solicitud a la API_::', error.message);
         return res.status(500).json({ error: 'Error al realizar la solicitud a la API' });
     }
 }

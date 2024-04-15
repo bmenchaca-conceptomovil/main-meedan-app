@@ -15,7 +15,7 @@ export default async function handler(req, res) {
             },
             headers: {
                 'Accept': 'application/vnd.api+json',
-                'X-Check-Token': '485a95148ad65fb84d9d6281f718953e',
+                'X-Check-Token': process.env.API_KEY,
                 'Content-Type': 'application/json'
             }
         });
