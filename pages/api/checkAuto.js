@@ -30,8 +30,6 @@ export default async function handler(req, res) {
             return res.status(213).json(message);
         }
 
-        //_:
-
         return res.status(200).json("handlerAuto");
     } catch (error) {
         console.error('Error al realizar la solicitud a la API:', error.message);
