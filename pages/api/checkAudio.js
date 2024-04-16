@@ -20,7 +20,6 @@ export default async function handler(req, res) {
             }
         });
 
-
         const audioFormatsRegex = /\.(mp3|wav|flac|m4a)$/i;
 
         if (!audioFormatsRegex.test(imageUrl)) {
@@ -33,7 +32,7 @@ export default async function handler(req, res) {
         }
 
         const parsedText = response.data.data.map(item => {
-            return `${item.attributes.claim}\n- ${item.attributes['fact-check-title']}\n- ${item.attributes['fact-check-summary']}\n`;
+            return `${item.attributes.claim}\n- ${item.attributes['fact-check-title']}\n- ${item.attributes['fact-check-summary']}\n- ${item.attributes['published-article-url']}\n`;
         }).join('\n');
 
         return res.status(200).json(parsedText);
