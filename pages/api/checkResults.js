@@ -10,7 +10,7 @@ export default async function handler(req, res) {
                 filter: {
                     type: 'text',
                     query: pais,
-                    feed_id: 463
+                    feed_id: 1090
                 }
             },
             headers: {
