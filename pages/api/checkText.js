@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         // }).join('\n');
 
         const parsedText = response.data.data.map(item => {
-            return `*${item.attributes['fact-check-title']}*\n ${item.attributes['fact-check-summary']}\n\n${item.attributes['published-article-url']}\n`;
+            return `*${item.attributes['fact-check-title']}*\n${item.attributes['fact-check-summary']}\n\n${item.attributes['published-article-url']}\n`;
         }).join('\n');
 
         return res.status(200).json(parsedText);
