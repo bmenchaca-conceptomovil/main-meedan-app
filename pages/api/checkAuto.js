@@ -7,6 +7,7 @@ export default async function handler(req, res) {
         const imageFormatsRegex = /\.(jpeg|jpg|png|gif)$/i;
         const audioFormatsRegex = /\.(mp3|wav|flac|m4a)$/i;
         const videoFormatsRegex = /\.(mp4|avi|mkv|mov)$/i;
+        const docFormatsRegex = /\.(pdf|txt)$/i;
         const textFormatsRegex = /\.(txt)$/i;
 
         const pais = param.toLowerCase();
@@ -20,6 +21,9 @@ export default async function handler(req, res) {
         } else if (videoFormatsRegex.test(param)) {
             const message = { error: 'El archivo es de tipo video.' };
             return res.status(212).json(message);
+        } else if (docFormatsRegex.test(param)) {
+            const message = { error: 'El archivo es de tipo documento.' };
+            return res.status(500).json(message);
         }
         else if (validarPais(pais)) {
             const message = { success: `El parámetro contiene el nombre de un país: ${param}` };
@@ -29,9 +33,6 @@ export default async function handler(req, res) {
 
             const message = { error: 'El archivo es de tipo texto.' };
             return res.status(213).json(message);
-        } else {
-            const message = { error: 'El archivo no es válido.' };
-            return res.status(500).json(message);
         }
 
         return res.status(200).json("handlerAuto");
