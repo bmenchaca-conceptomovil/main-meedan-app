@@ -7,7 +7,7 @@ export default async function handler(req, res) {
         const imageFormatsRegex = /\.(jpeg|jpg|png|gif)$/i;
         const audioFormatsRegex = /\.(mp3|wav|flac|m4a)$/i;
         const videoFormatsRegex = /\.(mp4|avi|mkv|mov)$/i;
-        const textFormatsRegex = /\.(txt|pdf|docx)$/i;
+        const textFormatsRegex = /\.(txt)$/i;
 
         const pais = param.toLowerCase();
 
@@ -26,6 +26,7 @@ export default async function handler(req, res) {
             return res.status(214).json(message);
         }
         else if (textFormatsRegex.test(param)) {
+
             const message = { error: 'El archivo es de tipo texto.' };
             return res.status(213).json(message);
         } else {
