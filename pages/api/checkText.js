@@ -24,10 +24,6 @@ export default async function handler(req, res) {
             return res.status(500).json({ error: 'No se encontraron resultados' });
         }
 
-        // const parsedText = response.data.data.map(item => {
-        //     return `${item.attributes.claim}\n- ${item.attributes['fact-check-title']}\n- ${item.attributes['fact-check-summary']}\n`;
-        // }).join('\n');
-
         const parsedText = response.data.data.map(item => {
             return `*${item.attributes['fact-check-title']}*\n\n${item.attributes['fact-check-summary']}\n\n${item.attributes['published-article-url']}\n`;
         }).join('\n');

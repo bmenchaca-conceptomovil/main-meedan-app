@@ -28,6 +28,9 @@ export default async function handler(req, res) {
         else if (textFormatsRegex.test(param)) {
             const message = { error: 'El archivo es de tipo texto.' };
             return res.status(213).json(message);
+        } else {
+            const message = { error: 'El archivo no es válido.' };
+            return res.status(500).json(message);
         }
 
         return res.status(200).json("handlerAuto");
